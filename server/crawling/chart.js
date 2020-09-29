@@ -26,4 +26,29 @@ const getMelon = function (req, res) {
   });
 };
 
-module.exports = getMelon;
+const getBugs = function (req, res) {
+  const getChart = async () => {
+    try {
+      return await axios.get("https://music.bugs.co.kr/chart");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getChart().then((html) => {
+    let ulList = [];
+    const $ = cheerio.load(html.data);
+    const $bodyList = $("div#CHARTrealtime table tbody").children("tr");
+    $bodyList.each(function (i, item) {
+      ulList[i] = {
+        rank: i + 1,
+        title: $(this).find("p.title a").text(),
+        artist: $(this).find("p.artist a").text(),
+      };
+    });
+    console.log(ulList);
+    res.status(200).json(ulList); // 200(정상응답), 크롤링한 데이터를 json으로 변환
+  });
+};
+
+module.exports = { getMelon, getBugs };
