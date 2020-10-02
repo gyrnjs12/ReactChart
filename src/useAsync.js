@@ -25,6 +25,7 @@ function reducer(state, action) {
   }
 }
 
+// API 요청함수, deps를 인자로 받음
 function useAsync(callback, deps = []) {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
@@ -45,7 +46,7 @@ function useAsync(callback, deps = []) {
     fetchData();
   }, deps);
 
-  return [state, fetchData];
+  return [state, fetchData]; // 상태와 함수 반환(데이터 리로딩을 위해)
 }
 
 export default useAsync;

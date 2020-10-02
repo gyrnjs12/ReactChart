@@ -3,10 +3,10 @@ import styled from "styled-components";
 import NavItem from "./NavItem";
 
 const NavBar = styled.div`
-  width: 100%;
+  width: 72.1vw;
   height: 40px;
-  padding-left: 300px;
-  padding-right: 300px;
+  padding-left: 250px;
+  padding-right: 250px;
   position: fix;
   background: #393b44;
   display: flex;

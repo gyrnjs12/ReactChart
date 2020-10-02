@@ -1,6 +1,8 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 import NavBar from "./components/Nav";
+import ChartTemplate from "./components/ChartTemplate";
+import ChartHead from "./components/ChartHead";
 import useAsync from "./useAsync";
 import axios from "axios";
 
@@ -23,6 +25,9 @@ function App() {
     <>
       <GlobalStyle />
       <NavBar />
+      <ChartTemplate>
+        <ChartHead />
+      </ChartTemplate>
     </>
   );
 }
