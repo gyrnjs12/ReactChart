@@ -5,7 +5,8 @@ import NavItem from "./NavItem";
 const NavBar = styled.div`
   width: 100%;
   height: 40px;
-
+  padding-left: 300px;
+  padding-right: 300px;
   position: fix;
   background: #393b44;
   display: flex;

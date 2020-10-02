@@ -20,6 +20,7 @@ const getMelon = function (req, res) {
         rank: i + 1,
         title: $(this).find("div.ellipsis.rank01 span a").text(), // html seletor를 받아 해당하는 태그를 반환
         artist: $(this).find("div.ellipsis.rank02 span a").text(),
+        img: $(this).find("a.image_typeAll img").attr("src"),
       };
     });
     res.status(200).json(ulList); // 200(정상응답), 크롤링한 데이터를 json으로 변환
