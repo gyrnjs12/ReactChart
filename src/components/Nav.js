@@ -23,4 +23,4 @@ function Nav({ children }) {
   );
 }
 
-export default Nav;
+export default React.memo(Nav);

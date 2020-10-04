@@ -14,6 +14,7 @@ const Text = styled.div`
   font-size: 25px;
   font-weight: bold;
   color: #ffffff;
+  cursor: pointer;
   &:first-letter {
     color: ${(props) => props.color || "white"};
   }
@@ -26,4 +27,4 @@ function NavItem({ text, color }) {
   );
 }
 
-export default NavItem;
+export default React.memo(NavItem);

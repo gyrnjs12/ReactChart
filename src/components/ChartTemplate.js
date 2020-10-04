@@ -19,4 +19,4 @@ function ChartTemplate({ children }) {
   return <ChartTemplateBlock>{children}</ChartTemplateBlock>;
 }
 
-export default ChartTemplate;
+export default React.memo(ChartTemplate);

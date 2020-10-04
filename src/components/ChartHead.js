@@ -4,10 +4,9 @@ import melon_logo from "./img/melon_logo.png";
 const ChartHeadBlock = styled.div`
   padding-left: 32px;
   padding-right: 32px;
-  padding-bottom: 204px;
 
   .date {
-    width: 300px;
+    width: 350px;
     margin: 0 auto;
     font-size: 36px;
     color: #343a40;
@@ -23,12 +22,17 @@ const ChartHeadBlock = styled.div`
     padding-top: 36px;
     height: 100px;
   }
+
+  .hours {
+    color: #02cd3b;
+  }
 `;
 
 const ChartHeadLine = styled.div`
   border-bottom: 1px gray solid;
   margin-left: -32px;
   margin-right: -32px;
+  margin-bottom: 32px;
 `;
 
 function ChartHead() {
@@ -45,7 +49,7 @@ function ChartHead() {
       <div className="date">
         <span className="today">{dateString} </span>
         <span className="hours">
-          {`${hours < 10 ? `0${hours}` : hours} `}:00
+          {`${hours < 10 ? `0${hours}` : hours} `}: 00
         </span>
       </div>
       <ChartHeadLine />
@@ -53,4 +57,4 @@ function ChartHead() {
   );
 }
 
-export default ChartHead;
+export default React.memo(ChartHead);

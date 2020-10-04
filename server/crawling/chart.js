@@ -17,7 +17,7 @@ const getMelon = function (req, res) {
     const $bodyList = $("div.service_list_song table tbody").children("tr");
     $bodyList.each(function (i, item) {
       ulList[i] = {
-        rank: i + 1,
+        id: i + 1,
         title: $(this).find("div.ellipsis.rank01 span a").text(), // html seletor를 받아 해당하는 태그를 반환
         artist: $(this).find("div.ellipsis.rank02 span a").text(),
         img: $(this).find("a.image_typeAll img").attr("src"),
