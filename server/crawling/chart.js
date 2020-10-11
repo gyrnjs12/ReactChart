@@ -42,9 +42,10 @@ const getBugs = function (req, res) {
     const $bodyList = $("div#CHARTrealtime table tbody").children("tr");
     $bodyList.each(function (i, item) {
       ulList[i] = {
-        rank: i + 1,
+        id: i + 1,
         title: $(this).find("p.title a").text(),
         artist: $(this).find("p.artist a").text(),
+        img: $(this).find("a.thumbnail img").attr("src"), // src 속성의 값을 가져옴
       };
     });
     console.log(ulList);

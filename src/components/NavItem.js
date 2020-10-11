@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const NavItemBlock = styled.div`
@@ -20,9 +20,16 @@ const Text = styled.div`
   }
 `;
 function NavItem({ text, color }) {
+  const [chart, setChart] = useState(null);
+  const onClick = (e) => {
+    setChart(e.target.innerHTML);
+    console.log(chart);
+  };
   return (
     <NavItemBlock>
-      <Text color={color}>{text}</Text>
+      <Text color={color} onClick={onClick}>
+        {text}
+      </Text>
     </NavItemBlock>
   );
 }

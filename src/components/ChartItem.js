@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { lighten, darken } from "polished"; // css 유틸 함수 라이브러리
 import { AiFillYoutube } from "react-icons/ai";
 

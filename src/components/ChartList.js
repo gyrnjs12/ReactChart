@@ -21,11 +21,11 @@ function ChartList() {
   });
   if (isLoading) return <div>로딩중...</div>;
   if (error) return <div>에러!</div>;
-  console.log(data[0].img);
   return (
     <ChartListBlock>
       {data.map((music) => (
         <ChartItem
+          key={music.id}
           rank={music.id}
           imgPath={music.img}
           music={music.title}

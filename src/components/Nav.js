@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import NavItem from "./NavItem";
+import ChartContext from "../context/context";
 
 const NavBar = styled.div`
   width: 72.1vw;
@@ -13,6 +14,8 @@ const NavBar = styled.div`
 `;
 
 function Nav({ children }) {
+  const value = useContext(ChartContext); // useContext() 불러오기
+  console.log("NAV", value);
   return (
     <NavBar>
       <NavItem text="HOME" />

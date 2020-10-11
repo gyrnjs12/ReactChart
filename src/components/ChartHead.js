@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import melon_logo from "./img/melon_logo.png";
+import ChartContext from "../context/context";
+
 const ChartHeadBlock = styled.div`
   padding-left: 32px;
   padding-right: 32px;
@@ -39,6 +41,8 @@ function ChartHead() {
   const today = new Date();
   const dateString = today.toLocaleDateString();
   const hours = today.getHours();
+  const value = useContext(ChartContext);
+  console.log("CHARTHEAD", value);
 
   return (
     <ChartHeadBlock>
