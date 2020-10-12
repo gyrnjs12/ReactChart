@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { ThemeContext } from "styled-components";
 import NavItem from "./NavItem";
-import ChartContext from "../context/context";
 
 const NavBar = styled.div`
   width: 72.1vw;
@@ -14,14 +13,13 @@ const NavBar = styled.div`
 `;
 
 function Nav({ children }) {
-  const value = useContext(ChartContext); // useContext() 불러오기
-  console.log("NAV", value);
+  const themeContext = useContext(ThemeContext);
   return (
     <NavBar>
-      <NavItem text="HOME" />
-      <NavItem color="#02cd3b" text="MELON" />
-      <NavItem color="#24b5e6" text="GENIE" />
-      <NavItem color="#ff3c28" text="BUGS" />
+      {/* <NavItem text="HOME" /> */}
+      <NavItem color={themeContext.colors.MELON} text="MELON" />
+      <NavItem color={themeContext.colors.GENIE} text="GENIE" />
+      <NavItem color={themeContext.colors.BUGS} text="BUGS" />
     </NavBar>
   );
 }

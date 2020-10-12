@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import melon_logo from "./img/melon_logo.png";
 import ChartContext from "../context/context";
 
 const ChartHeadBlock = styled.div`
@@ -8,6 +7,7 @@ const ChartHeadBlock = styled.div`
   padding-right: 32px;
 
   .date {
+    display: flex;
     width: 350px;
     margin: 0 auto;
     font-size: 36px;
@@ -24,10 +24,18 @@ const ChartHeadBlock = styled.div`
     padding-top: 36px;
     height: 100px;
   }
-
-  .hours {
-    color: #02cd3b;
+  .chart-img {
+    padding-top: 36px;
+    background-size: 142px 46px;
+    width: 142px;
+    height: 46px;
   }
+`;
+
+const HoursText = styled.div`
+  margin-left: 10px;
+  color: ${({ color, theme }) => theme.colors[color]};
+  /* 이거는 theme.colors.[color] state에 따라 color가 바뀜 */
 `;
 
 const ChartHeadLine = styled.div`
@@ -37,24 +45,23 @@ const ChartHeadLine = styled.div`
   margin-bottom: 32px;
 `;
 
-function ChartHead() {
+function ChartHead({ children }) {
   const today = new Date();
   const dateString = today.toLocaleDateString();
   const hours = today.getHours();
-  const value = useContext(ChartContext);
-  console.log("CHARTHEAD", value);
+  const { chart } = useContext(ChartContext);
 
   return (
-    <ChartHeadBlock>
+    <ChartHeadBlock img={chart}>
       <div className="chart">
-        <img className="chart-img" alt="melon" src={melon_logo} />
+        <img className="chart-img" alt="로고" src={`/img/${chart}_logo.png`} />
         <div className="chart-name"> CHART</div>
       </div>
       <div className="date">
         <span className="today">{dateString} </span>
-        <span className="hours">
+        <HoursText color={chart}>
           {`${hours < 10 ? `0${hours}` : hours} `}: 00
-        </span>
+        </HoursText>
       </div>
       <ChartHeadLine />
     </ChartHeadBlock>

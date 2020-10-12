@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import ChartContext from "../context/context";
 
 const NavItemBlock = styled.div`
   display: flex;
@@ -20,14 +21,11 @@ const Text = styled.div`
   }
 `;
 function NavItem({ text, color }) {
-  const [chart, setChart] = useState(null);
-  const onClick = (e) => {
-    setChart(e.target.innerHTML);
-    console.log(chart);
-  };
+  const { onChangeChart } = useContext(ChartContext);
+
   return (
     <NavItemBlock>
-      <Text color={color} onClick={onClick}>
+      <Text color={color} onClick={onChangeChart}>
         {text}
       </Text>
     </NavItemBlock>
