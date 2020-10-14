@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import NavBar from "./components/Nav";
 import ChartTemplate from "./components/ChartTemplate";
