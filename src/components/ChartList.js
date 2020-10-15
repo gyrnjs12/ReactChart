@@ -1,13 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import ChartItem from "./ChartItem";
-import { useAsync } from "react-async";
-import axios from "axios";
-
-async function getMelon() {
-  const response = await axios.get("http://localhost:3002/chart/melon");
-  return response.data;
-}
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import ChartItem from './ChartItem';
+import axios from 'axios';
+import {
+  useChartDispatch,
+  useChartState,
+} from './Provider/ChartProvider.component';
 
 const ChartListBlock = styled.div`
   flex: 1;
@@ -16,22 +14,35 @@ const ChartListBlock = styled.div`
 `;
 
 function ChartList() {
-  const { data, error, isLoading } = useAsync({
-    promiseFn: getMelon,
-  });
-  if (isLoading) return <div>로딩중...</div>;
+  const dispatch = useChartDispatch();
+  const { chart, music } = useChartState();
+  async function getChart(site) {
+    dispatch({ type: 'GET_CHART' });
+    try {
+      const response = await axios.get(`http://localhost:3002/chart/${site}`);
+      dispatch({ type: 'GET_CHART_SUCCESS', data: response.data });
+    } catch (e) {
+      dispatch({ type: 'GET_CHART_ERROR', error: e });
+    }
+  }
+  useEffect(() => {
+    getChart(chart);
+  }, [chart]);
+  const { data, error } = music;
+
   if (error) return <div>에러!</div>;
   return (
     <ChartListBlock>
-      {data.map((music) => (
-        <ChartItem
-          key={music.id}
-          rank={music.id}
-          imgPath={music.img}
-          music={music.title}
-          artist={music.artist}
-        />
-      ))}
+      {data &&
+        data.map((music) => (
+          <ChartItem
+            key={music.id}
+            rank={music.id}
+            imgPath={music.img}
+            music={music.title}
+            artist={music.artist}
+          />
+        ))}
     </ChartListBlock>
   );
 }
