@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import ChartContext from "../context/context";
+import {useChartDispatch} from "./Provider/ChartProvider.component"
 
 const NavItemBlock = styled.div`
   display: flex;
@@ -21,7 +21,8 @@ const Text = styled.div`
   }
 `;
 function NavItem({ text, color }) {
-  const { onChangeChart } = useContext(ChartContext);
+  const dispatch = useChartDispatch();
+  const onChangeChart = (e) => dispatch({type: "CHANGE_CHART", chart: e.target.innerText})
 
   return (
     <NavItemBlock>

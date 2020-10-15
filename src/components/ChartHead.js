@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import ChartContext from "../context/context";
+import { useChartState} from './Provider/ChartProvider.component'
 
 const ChartHeadBlock = styled.div`
   padding-left: 32px;
@@ -49,8 +49,8 @@ function ChartHead({ children }) {
   const today = new Date();
   const dateString = today.toLocaleDateString();
   const hours = today.getHours();
-  const { chart } = useContext(ChartContext);
-
+  const {chart} = useChartState();
+console.log(chart,"차트상태")
   return (
     <ChartHeadBlock img={chart}>
       <div className="chart">
