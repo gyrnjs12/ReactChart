@@ -6,6 +6,7 @@ import React, { createContext, useReducer, useContext } from 'react';
 const initialState = {
   chart: 'MELON',
   music: { loading: false, data: null, error: null },
+  modal: false,
 };
 function chartReducer(state, action) {
   switch (action.type) {
@@ -40,6 +41,16 @@ function chartReducer(state, action) {
           data: null,
           error: action.error,
         },
+      };
+    case 'CLOSE_MODAL':
+      return {
+        ...state,
+        modal: false,
+      };
+    case 'OPEN_MODAL':
+      return {
+        ...state,
+        modal: true,
       };
     default:
       throw new Error(`Unhandle action type: ${action.type}`);

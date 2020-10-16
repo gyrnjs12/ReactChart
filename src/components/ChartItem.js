@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { lighten, darken } from "polished"; // css 유틸 함수 라이브러리
-import { AiFillYoutube } from "react-icons/ai";
+import React from 'react';
+import styled from 'styled-components';
+import { lighten, darken } from 'polished'; // css 유틸 함수 라이브러리
+import { AiFillYoutube } from 'react-icons/ai';
+import { useChartDispatch } from './Provider/ChartProvider.component';
 
 const ChartItemBlock = styled.div`
   display: flex;
@@ -45,20 +46,25 @@ const Image = styled.div`
   border-radius: 8px;
 `;
 
-const YouTube = styled.div`
+const YouTubeButton = styled.button`
   margin-left: 120px;
   color: #ff0102;
   font-size: 30px;
   cursor: pointer;
+  outline: none;
+  border: none;
+  background: #f6f6f6;
   &:hover {
-    color: ${lighten(0.1, "#ff0102")};
+    color: ${lighten(0.1, '#ff0102')};
   }
   &:active {
-    color: ${darken(0.1, "#ff0102")};
+    color: ${darken(0.1, '#ff0102')};
   }
 `;
 
 function ChartItem({ imgPath, music, artist, rank }) {
+  const dispatch = useChartDispatch();
+  const handleOpenMusic = () => dispatch({ type: 'OPEN_MODAL' });
   return (
     <ChartItemBlock>
       <RankText>{rank}</RankText>
@@ -67,9 +73,9 @@ function ChartItem({ imgPath, music, artist, rank }) {
         <MusicName>{music}</MusicName>
         <AritistName>{artist}</AritistName>
       </NameBlock>
-      <YouTube>
+      <YouTubeButton onClick={handleOpenMusic}>
         <AiFillYoutube />
-      </YouTube>
+      </YouTubeButton>
     </ChartItemBlock>
   );
 }

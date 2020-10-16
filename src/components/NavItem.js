@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import {useChartDispatch} from "./Provider/ChartProvider.component"
+import React from 'react';
+import styled from 'styled-components';
+import { useChartDispatch } from './Provider/ChartProvider.component';
 
 const NavItemBlock = styled.div`
   display: flex;
@@ -17,12 +17,13 @@ const Text = styled.div`
   color: #ffffff;
   cursor: pointer;
   &:first-letter {
-    color: ${(props) => props.color || "white"};
+    color: ${(props) => props.color || 'white'};
   }
 `;
 function NavItem({ text, color }) {
   const dispatch = useChartDispatch();
-  const onChangeChart = (e) => dispatch({type: "CHANGE_CHART", chart: e.target.innerText})
+  const onChangeChart = (e) =>
+    dispatch({ type: 'CHANGE_CHART', chart: e.target.innerText });
 
   return (
     <NavItemBlock>

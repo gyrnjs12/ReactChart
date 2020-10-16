@@ -6,6 +6,8 @@ import {
   useChartDispatch,
   useChartState,
 } from './Provider/ChartProvider.component';
+import MusicPortal from '../MusicPortal';
+import MusicModal from './MusicModal';
 
 const ChartListBlock = styled.div`
   flex: 1;
@@ -15,7 +17,7 @@ const ChartListBlock = styled.div`
 
 function ChartList() {
   const dispatch = useChartDispatch();
-  const { chart, music } = useChartState();
+  const { chart, music, modal } = useChartState();
   async function getChart(site) {
     dispatch({ type: 'GET_CHART' });
     try {
@@ -32,18 +34,25 @@ function ChartList() {
 
   if (error) return <div>에러!</div>;
   return (
-    <ChartListBlock>
-      {data &&
-        data.map((music) => (
-          <ChartItem
-            key={music.id}
-            rank={music.id}
-            imgPath={music.img}
-            music={music.title}
-            artist={music.artist}
-          />
-        ))}
-    </ChartListBlock>
+    <>
+      <ChartListBlock>
+        {data &&
+          data.map((music) => (
+            <ChartItem
+              key={music.id}
+              rank={music.id}
+              imgPath={music.img}
+              music={music.title}
+              artist={music.artist}
+            />
+          ))}
+      </ChartListBlock>
+      {modal && (
+        <MusicPortal>
+          <MusicModal />
+        </MusicPortal>
+      )}
+    </>
   );
 }
 
