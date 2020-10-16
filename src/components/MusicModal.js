@@ -20,11 +20,11 @@ const ModalTemplete = styled.div`
 const Content = styled.div`
   background: white;
   padding: 1rem;
-  width: 400px;
-  height: auto;
+  width: 600px;
+  height: 400px;
 `;
 const ButtonBlock = styled.div`
-  width: 432px;
+  width: 632px;
   height: auto;
   display: flex;
   justify-content: flex-end;
@@ -62,8 +62,17 @@ function MusicModal() {
         </ExitButton>
       </ButtonBlock>
       <Content>
-        <h1>모달 테스트</h1>
-        <div>음악 틀어지는 공간</div>
+        {/* <h1>모달 테스트</h1>
+        <div>음악 틀어지는 공간</div> */}
+        <iframe
+          title="music"
+          width="600"
+          height="400"
+          src="https://www.youtube.com/embed/gdZLi9oWNZg"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
       </Content>
     </ModalTemplete>
   );

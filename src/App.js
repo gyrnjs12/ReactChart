@@ -6,6 +6,8 @@ import ChartHead from './components/ChartHead';
 import ChartList from './components/ChartList';
 import { ChartProvider } from './components/Provider/ChartProvider.component';
 import theme from './components/theme/theme';
+import TestV from './TestV';
+// API_KEY = 'AIzaSyD2dVDkSFK2ogtAH7eGzY6nLa4yHfbRfbE'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -25,6 +27,7 @@ function App() {
             <ChartHead />
             <ChartList />
           </ChartTemplate>
+          <TestV />
         </ThemeProvider>
       </ChartProvider>
     </>
