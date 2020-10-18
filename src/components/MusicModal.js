@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { lighten, darken } from 'polished';
 import { MdClear } from 'react-icons/md';
-import { useChartDispatch } from './Provider/ChartProvider.component';
+import {
+  useChartDispatch,
+  useChartState,
+} from './Provider/ChartProvider.component';
 
 const ModalTemplete = styled.div`
   background: rgba(0, 0, 0, 0.25);
@@ -53,6 +56,7 @@ const ExitButton = styled.button`
 
 function MusicModal() {
   const dispatch = useChartDispatch();
+  const { search } = useChartState();
   const handleCloseMusic = () => dispatch({ type: 'CLOSE_MODAL' });
   return (
     <ModalTemplete>
@@ -62,17 +66,9 @@ function MusicModal() {
         </ExitButton>
       </ButtonBlock>
       <Content>
-        {/* <h1>모달 테스트</h1>
-        <div>음악 틀어지는 공간</div> */}
-        <iframe
-          title="music"
-          width="600"
-          height="400"
-          src="https://www.youtube.com/embed/gdZLi9oWNZg"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+        <h1>모달 테스트</h1>
+        <div>노래 틀어지는 공간</div>
+        <div>노래: {search.name}</div>
       </Content>
     </ModalTemplete>
   );

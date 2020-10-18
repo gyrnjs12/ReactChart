@@ -47,6 +47,8 @@ const Image = styled.div`
 `;
 
 const YouTubeButton = styled.button`
+  width: 30px;
+  height: 30px;
   margin-left: 120px;
   color: #ff0102;
   font-size: 30px;
@@ -64,17 +66,26 @@ const YouTubeButton = styled.button`
 
 function ChartItem({ imgPath, music, artist, rank }) {
   const dispatch = useChartDispatch();
-  const handleOpenMusic = () => dispatch({ type: 'OPEN_MODAL' });
+  const handleOpenMusic = (e) => {
+    const musicName = e.target.id || e.target.parentNode.id;
+    dispatch({
+      type: 'OPEN_MODAL',
+      name: musicName,
+    });
+  };
+  const testBtn = (e) => {
+    console.dir(e.target.id || e.target.parentNode.id);
+  };
   return (
-    <ChartItemBlock>
+    <ChartItemBlock id={music}>
       <RankText>{rank}</RankText>
       <Image imgPath={imgPath} />
       <NameBlock>
         <MusicName>{music}</MusicName>
         <AritistName>{artist}</AritistName>
       </NameBlock>
-      <YouTubeButton onClick={handleOpenMusic}>
-        <AiFillYoutube />
+      <YouTubeButton>
+        <AiFillYoutube id={music} onClick={handleOpenMusic} />
       </YouTubeButton>
     </ChartItemBlock>
   );

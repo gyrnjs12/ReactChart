@@ -7,13 +7,14 @@ const API_KEY = 'AIzaSyD2dVDkSFK2ogtAH7eGzY6nLa4yHfbRfbE';
 function TestV(props) {
   const initalState = { data: null, selectedVide: null, term: null };
   const [video, SetVideo] = useState(initalState);
+  const term = 'Love Girl Sick';
   const btn = () => {
     // term은 검색어
-    YTsearch({ key: API_KEY, term: 'Lovesick Girls' }, (data) => {
+    YTsearch({ key: API_KEY, term: term }, (data) => {
       SetVideo({
         data: data, // 검색 결과 상위 5개 불러옴
         selectedVide: data[0], // 첫번째 검색결과
-        term: 'Lovesick Girls', // 검색어
+        term: term, // 검색어
       });
     });
     console.log('버튼클릭', video);

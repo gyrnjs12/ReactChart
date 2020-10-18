@@ -5,8 +5,16 @@ import React, { createContext, useReducer, useContext } from 'react';
 // 사용할 state를 return
 const initialState = {
   chart: 'MELON',
-  music: { loading: false, data: null, error: null },
   modal: false,
+  music: {
+    loading: false,
+    data: null,
+    error: null,
+  },
+  search: {
+    name: null,
+    videoId: null,
+  },
 };
 function chartReducer(state, action) {
   switch (action.type) {
@@ -51,6 +59,9 @@ function chartReducer(state, action) {
       return {
         ...state,
         modal: true,
+        search: {
+          name: action.name,
+        },
       };
     default:
       throw new Error(`Unhandle action type: ${action.type}`);
