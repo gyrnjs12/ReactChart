@@ -61,6 +61,7 @@ function chartReducer(state, action) {
         modal: true,
         search: {
           name: action.name,
+          videoId: action.id,
         },
       };
     default:

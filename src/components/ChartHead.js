@@ -50,7 +50,6 @@ function ChartHead({ children }) {
   const dateString = today.toLocaleDateString();
   const hours = today.getHours();
   const { chart } = useChartState();
-  console.log(chart, '차트상태');
   return (
     <ChartHeadBlock img={chart}>
       <div className="chart">

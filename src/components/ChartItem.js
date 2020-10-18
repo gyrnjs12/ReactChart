@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import YTsearch from 'youtube-api-search';
 import { lighten, darken } from 'polished'; // css 유틸 함수 라이브러리
 import { AiFillYoutube } from 'react-icons/ai';
 import { useChartDispatch } from './Provider/ChartProvider.component';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ChartItemBlock = styled.div`
   display: flex;
@@ -68,14 +71,15 @@ function ChartItem({ imgPath, music, artist, rank }) {
   const dispatch = useChartDispatch();
   const handleOpenMusic = (e) => {
     const musicName = e.target.id || e.target.parentNode.id;
-    dispatch({
-      type: 'OPEN_MODAL',
-      name: musicName,
+    YTsearch({ key: API_KEY, term: musicName }, (data) => {
+      dispatch({
+        type: 'OPEN_MODAL',
+        name: musicName,
+        id: data[0].id.videoId,
+      });
     });
   };
-  const testBtn = (e) => {
-    console.dir(e.target.id || e.target.parentNode.id);
-  };
+
   return (
     <ChartItemBlock id={music}>
       <RankText>{rank}</RankText>

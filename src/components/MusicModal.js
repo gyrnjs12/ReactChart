@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import YouTube from 'react-youtube';
 import { lighten, darken } from 'polished';
 import { MdClear } from 'react-icons/md';
 import {
@@ -21,13 +22,14 @@ const ModalTemplete = styled.div`
 `;
 
 const Content = styled.div`
-  background: white;
+  background: #373a40;
   padding: 1rem;
-  width: 600px;
-  height: 400px;
+  width: 640px;
+  height: 480px;
+  border-radius: 6px;
 `;
 const ButtonBlock = styled.div`
-  width: 632px;
+  width: 672px;
   height: auto;
   display: flex;
   justify-content: flex-end;
@@ -54,6 +56,15 @@ const ExitButton = styled.button`
   border: none;
 `;
 
+const opts = {
+  host: 'https://www.youtube.com',
+  width: '640',
+  height: '480',
+  playerVar: {
+    autoplay: 1,
+    origin: 'http://localhost:3000',
+  },
+};
 function MusicModal() {
   const dispatch = useChartDispatch();
   const { search } = useChartState();
@@ -66,9 +77,7 @@ function MusicModal() {
         </ExitButton>
       </ButtonBlock>
       <Content>
-        <h1>모달 테스트</h1>
-        <div>노래 틀어지는 공간</div>
-        <div>노래: {search.name}</div>
+        <YouTube videoId={search.videoId} opts={opts} />
       </Content>
     </ModalTemplete>
   );
