@@ -54,6 +54,7 @@ const getBugs = function (req, res) {
 };
 
 const getGenie = function (req, res) {
+  // console.dir(data, {depth: null});
   const pages = [1, 2];
   const today = new Date();
   const month = today.getMonth() + 1;
@@ -72,26 +73,24 @@ const getGenie = function (req, res) {
     }),
   ).then((html) => {
     let ulList = [];
-    const $ = cheerio.load(html[0].data);
-    const $2 = cheerio.load(html[1].data);
-    const $bodyList = $('div.music-list-wrap table.list-wrap tbody').children(
-      'tr.list',
-    );
-    const $bodyList2 = $2('div.music-list-wrap table.list-wrap tbody').children(
-      'tr.list',
-    );
-    const $bodyList3 = $bodyList + $bodyList2;
-    console.log(`바디리스트:${$bodyList3}`);
-    $bodyList3.each(function (i, item) {
-      ulList[i] = {
-        id: i + 1,
-        title: $(this).find('td.info a.title.ellipsis').text().trim(),
-        artist: $(this).find('td.info a.artist.ellipsis').text(),
-        img: $(this).find('td a.cover img').attr('src'), // src 속성의 값을 가져옴
-      };
+    let allList = [];
+    pages.forEach((page, index) => {
+      const $ = cheerio.load(html[index].data);
+      const $bodyList = $('div.music-list-wrap table.list-wrap tbody').children(
+        'tr.list',
+      );
+      $bodyList.each(function (i, item) {
+        ulList[i] = {
+          id: $(this).find('td.number').text().slice(0, 2).trim(),
+          title: $(this).find('td.info a.title.ellipsis').text().trim(),
+          artist: $(this).find('td.info a.artist.ellipsis').text(),
+          img: $(this).find('td a.cover img').attr('src'),
+        };
+      });
+      allList = [...allList, ...ulList];
     });
     // console.log(ulList);
-    res.status(200).send(ulList); // 200(정상응답), 크롤링한 데이터를 json으로 변환
+    res.status(200).send(allList); // 200(정상응답), 크롤링한 데이터를 json으로 변환
   });
 };
 module.exports = { getMelon, getBugs, getGenie };
