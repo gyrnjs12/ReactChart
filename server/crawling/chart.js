@@ -89,7 +89,7 @@ const getGenie = function (req, res) {
       });
       allList = [...allList, ...ulList];
     });
-    // console.log(ulList);
+
     res.status(200).send(allList); // 200(정상응답), 크롤링한 데이터를 json으로 변환
   });
 };

@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import styled, { ThemeContext } from "styled-components";
-import NavItem from "./NavItem";
+import React, { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
+import NavItem from './NavItem';
 
 const NavBar = styled.div`
   width: 72.1vw;
@@ -10,6 +10,9 @@ const NavBar = styled.div`
   position: fix;
   background: #393b44;
   display: flex;
+  @media (max-width: 768px) {
+    background: white;
+  }
 `;
 
 function Nav({ children }) {
