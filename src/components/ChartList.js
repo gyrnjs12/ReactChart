@@ -29,6 +29,7 @@ function ChartList() {
   }
   useEffect(() => {
     getChart(chart);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chart]);
   const { data, error } = music;
 

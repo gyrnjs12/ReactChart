@@ -81,7 +81,7 @@ const getGenie = function (req, res) {
       );
       $bodyList.each(function (i, item) {
         ulList[i] = {
-          id: $(this).find('td.number').text().slice(0, 2).trim(),
+          id: $(this).find('td.number').text().slice(0, 3).trim(),
           title: $(this).find('td.info a.title.ellipsis').text().trim(),
           artist: $(this).find('td.info a.artist.ellipsis').text(),
           img: $(this).find('td a.cover img').attr('src'),
