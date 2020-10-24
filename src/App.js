@@ -6,25 +6,38 @@ import ChartHead from './components/ChartHead';
 import ChartList from './components/ChartList';
 import { ChartProvider } from './components/Provider/ChartProvider.component';
 import theme from './components/theme/theme';
+import { useMediaQuery } from 'react-responsive';
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     background: #e9ecef;
   }
-  `;
+`;
 // 사용하고자 하는 자식 컴포넌트를 밖에서 <Provider>로 감싸주기
 function App() {
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
+
+  const isPc = useMediaQuery({
+    query: '(min-width: 769px)',
+  });
   return (
     <>
       <ChartProvider>
         <GlobalStyle />
         <ThemeProvider theme={theme}>
-          <NavBar />
-          <ChartTemplate>
-            <ChartHead />
-            <ChartList />
-          </ChartTemplate>
+          {isPc && (
+            <>
+              <NavBar />
+              <ChartTemplate>
+                <ChartHead />
+                <ChartList />
+              </ChartTemplate>
+            </>
+          )}
+          {isMobile && <div>모바일!!</div>}
         </ThemeProvider>
       </ChartProvider>
     </>

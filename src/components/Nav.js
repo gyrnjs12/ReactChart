@@ -10,9 +10,6 @@ const NavBar = styled.div`
   position: fix;
   background: #393b44;
   display: flex;
-  @media (max-width: 768px) {
-    background: white;
-  }
 `;
 
 function Nav({ children }) {
