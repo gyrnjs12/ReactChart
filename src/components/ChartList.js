@@ -18,10 +18,12 @@ const ChartListBlock = styled.div`
 function ChartList() {
   const dispatch = useChartDispatch();
   const { chart, music, modal } = useChartState();
+  const herokuURL = 'https://hidden-ridge-32364.herokuapp.com/chart/';
+  // const localURL = 'http://localhost:3002/chart/';
   async function getChart(site) {
     dispatch({ type: 'GET_CHART' });
     try {
-      const response = await axios.get(`http://localhost:3002/chart/${site}`);
+      const response = await axios.get(`${herokuURL}/${site}`);
       dispatch({ type: 'GET_CHART_SUCCESS', data: response.data });
     } catch (e) {
       dispatch({ type: 'GET_CHART_ERROR', error: e });
