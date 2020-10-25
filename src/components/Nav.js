@@ -3,7 +3,7 @@ import styled, { ThemeContext } from 'styled-components';
 import NavItem from './NavItem';
 
 const NavBar = styled.div`
-  width: 72.1vw;
+  width: 10vw;
   height: 40px;
   padding-left: 250px;
   padding-right: 250px;

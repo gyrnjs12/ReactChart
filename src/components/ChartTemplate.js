@@ -1,8 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { useMediaQuery } from 'react-responsive';
 
 const ChartTemplateBlock = styled.div`
-  width: 1200px;
+  width: ${({ isPc }) => (isPc ? `1200px` : `768px`)};
   height: 100vh;
 
   margin-left: 270px;
@@ -16,7 +17,10 @@ const ChartTemplateBlock = styled.div`
 `;
 
 function ChartTemplate({ children }) {
-  return <ChartTemplateBlock>{children}</ChartTemplateBlock>;
+  const isPc = useMediaQuery({
+    query: '(min-width: 769px)',
+  });
+  return <ChartTemplateBlock isPc={isPc}>{children}</ChartTemplateBlock>;
 }
 
 export default React.memo(ChartTemplate);
