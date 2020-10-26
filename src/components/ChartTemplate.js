@@ -16,7 +16,9 @@ function ChartTemplate({ children }) {
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
-  return <ChartTemplateBlock isMobile>{children}</ChartTemplateBlock>;
+  return (
+    <ChartTemplateBlock isMobile={isMobile}>{children}</ChartTemplateBlock>
+  );
 }
 
 export default React.memo(ChartTemplate);

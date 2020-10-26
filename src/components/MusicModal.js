@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import YouTube from 'react-youtube';
 import { lighten, darken } from 'polished';
 import { MdClear } from 'react-icons/md';
+import { useMediaQuery } from 'react-responsive';
 import {
   useChartDispatch,
   useChartState,
@@ -24,12 +25,12 @@ const ModalTemplete = styled.div`
 const Content = styled.div`
   background: #373a40;
   padding: 1rem;
-  width: 640px;
-  height: 480px;
+  width: ${({ isMobile }) => (isMobile ? `320px` : `640px`)};
+  height: ${({ isMobile }) => (isMobile ? `240px` : `480px`)};
   border-radius: 6px;
 `;
 const ButtonBlock = styled.div`
-  width: 672px;
+  width: ${({ isMobile }) => (isMobile ? `352px` : `672px`)};
   height: auto;
   display: flex;
   justify-content: flex-end;
@@ -65,19 +66,35 @@ const opts = {
     origin: 'http://localhost:3000',
   },
 };
+const mobileOpts = {
+  host: 'https://www.youtube.com',
+  width: '320',
+  height: '240',
+  playerVar: {
+    autoplay: 1,
+    origin: 'http://localhost:3000',
+  },
+};
 function MusicModal() {
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
   const dispatch = useChartDispatch();
   const { search } = useChartState();
   const handleCloseMusic = () => dispatch({ type: 'CLOSE_MODAL' });
   return (
     <ModalTemplete>
-      <ButtonBlock>
+      <ButtonBlock isMobile={isMobile}>
         <ExitButton onClick={handleCloseMusic}>
           <MdClear />
         </ExitButton>
       </ButtonBlock>
-      <Content>
-        <YouTube videoId={search.videoId} opts={opts} />
+      <Content isMobile={isMobile}>
+        {isMobile ? (
+          <YouTube videoId={search.videoId} opts={mobileOpts} />
+        ) : (
+          <YouTube videoId={search.videoId} opts={opts} />
+        )}
       </Content>
     </ModalTemplete>
   );
