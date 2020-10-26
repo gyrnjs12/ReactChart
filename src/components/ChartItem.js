@@ -10,9 +10,19 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ChartItemBlock = styled.div`
   display: flex;
-  border: 1px #212121 solid;
-  border-radius: 6px;
-  padding: 10px 40px;
+  ${({ isSmall }) => {
+    return css`
+      ${isSmall
+        ? `
+        border-bottom: 1px #212121 solid;
+        border-radius: 0;
+        padding: 10px 15px;`
+        : `
+        border: 1px #212121 solid;
+        border-radius: 6px;
+        padding: 10px 40px;`}
+    `;
+  }}
   align-items: center;
 `;
 
@@ -26,6 +36,11 @@ const NameBlock = styled.div`
 const MusicName = styled.div`
   font-size: ${({ isMobile }) => (isMobile ? `16px` : `18px`)};
   font-weight: 500;
+  width: 38vw;
+  height: 19px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const AritistName = styled.div`
@@ -34,8 +49,13 @@ const AritistName = styled.div`
   color: #393b44;
 `;
 
+const RankBox = styled.div`
+  width: 30px;
+  height: 31px;
+  margin-right: 10px;
+`;
+
 const RankText = styled.div`
-  width: ${({ isMobile }) => (isMobile ? `100px` : `50px`)};
   font-size: 26px;
   color: #797a7e;
   font-weight: bold;
@@ -67,7 +87,7 @@ const Image = styled.div`
 const YouTubeButton = styled.button`
   width: 30px;
   height: 30px;
-  margin-left: 40px;
+  margin-left: -3vw;
   color: #ff0102;
   font-size: 30px;
   cursor: pointer;
@@ -86,6 +106,9 @@ function ChartItem({ imgPath, music, artist, rank }) {
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
+  const isSmall = useMediaQuery({
+    query: '(max-width: 680px)',
+  });
   const dispatch = useChartDispatch();
   const handleOpenMusic = (e) => {
     const musicName = e.target.id || e.target.parentNode.id;
@@ -99,8 +122,10 @@ function ChartItem({ imgPath, music, artist, rank }) {
   };
 
   return (
-    <ChartItemBlock id={music}>
-      <RankText isMobile={isMobile}>{rank}</RankText>
+    <ChartItemBlock id={music} isSmall={isSmall}>
+      <RankBox>
+        <RankText isMobile={isMobile}>{rank}</RankText>
+      </RankBox>
       <ImageBox isMobile={isMobile}>
         <Image imgPath={imgPath} isMobile={isMobile} />
       </ImageBox>

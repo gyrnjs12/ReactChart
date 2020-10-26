@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import ChartItem from './ChartItem';
 import axios from 'axios';
+import { useMediaQuery } from 'react-responsive';
 import {
   useChartDispatch,
   useChartState,
@@ -12,10 +13,17 @@ import MusicModal from './MusicModal';
 const ChartListBlock = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding: 20px 78px; /* 위아래 20, 양옆 32 */
+  ${({ isSmall }) => {
+    return css`
+      ${isSmall ? `` : `padding: 20px 78px;`}; /* 위아래 20, 양옆 78 */
+    `;
+  }}
 `;
 
 function ChartList() {
+  const isSmall = useMediaQuery({
+    query: '(max-width: 680px)',
+  });
   const dispatch = useChartDispatch();
   const { chart, music, modal } = useChartState();
   const herokuURL = 'https://hidden-ridge-32364.herokuapp.com/chart/';
@@ -38,7 +46,7 @@ function ChartList() {
   if (error) return <div>에러!</div>;
   return (
     <>
-      <ChartListBlock>
+      <ChartListBlock isSmall={isSmall}>
         {data &&
           data.map((music) => (
             <ChartItem
