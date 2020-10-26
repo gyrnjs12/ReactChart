@@ -14,7 +14,7 @@ const ChartTemplateBlock = styled.div`
 
 function ChartTemplate({ children }) {
   const isMobile = useMediaQuery({
-    query: '(max-width: 768px)',
+    query: '(max-width: 1240px)',
   });
   return (
     <ChartTemplateBlock isMobile={isMobile}>{children}</ChartTemplateBlock>

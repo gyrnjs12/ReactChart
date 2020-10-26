@@ -10,9 +10,20 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ChartItemBlock = styled.div`
   display: flex;
-  border: 1px #212121 solid;
-  border-radius: 6px;
-  padding: 10px 40px;
+  ${({ isSmall }) => {
+    return css`
+      ${isSmall
+        ? `
+        border-bottom: 1px #212121 solid;
+        border-radius: 0;
+        padding: 10px 15px;`
+        : `
+        border: 1px #212121 solid;
+        border-radius: 6px;
+        padding: 10px 40px;`}
+    `;
+  }}
+  padding: 10px 15px;
   align-items: center;
 `;
 
@@ -26,6 +37,11 @@ const NameBlock = styled.div`
 const MusicName = styled.div`
   font-size: ${({ isMobile }) => (isMobile ? `16px` : `18px`)};
   font-weight: 500;
+  width: 38vw;
+  height: 19px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const AritistName = styled.div`
@@ -86,6 +102,9 @@ function ChartItem({ imgPath, music, artist, rank }) {
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
+  const isSmall = useMediaQuery({
+    query: '(max-width: 680px)',
+  });
   const dispatch = useChartDispatch();
   const handleOpenMusic = (e) => {
     const musicName = e.target.id || e.target.parentNode.id;
@@ -99,7 +118,7 @@ function ChartItem({ imgPath, music, artist, rank }) {
   };
 
   return (
-    <ChartItemBlock id={music}>
+    <ChartItemBlock id={music} isSmall={isSmall}>
       <RankText isMobile={isMobile}>{rank}</RankText>
       <ImageBox isMobile={isMobile}>
         <Image imgPath={imgPath} isMobile={isMobile} />

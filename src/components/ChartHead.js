@@ -42,7 +42,6 @@ const ChartHeadLine = styled.div`
   border-bottom: 1px gray solid;
   margin-left: -32px;
   margin-right: -32px;
-  margin-bottom: 32px;
 `;
 
 function ChartHead({ children }) {
