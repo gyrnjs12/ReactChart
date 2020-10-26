@@ -23,7 +23,6 @@ const ChartItemBlock = styled.div`
         padding: 10px 40px;`}
     `;
   }}
-  padding: 10px 15px;
   align-items: center;
 `;
 
@@ -50,8 +49,13 @@ const AritistName = styled.div`
   color: #393b44;
 `;
 
+const RankBox = styled.div`
+  width: 30px;
+  height: 31px;
+  margin-right: 10px;
+`;
+
 const RankText = styled.div`
-  width: ${({ isMobile }) => (isMobile ? `100px` : `50px`)};
   font-size: 26px;
   color: #797a7e;
   font-weight: bold;
@@ -83,7 +87,7 @@ const Image = styled.div`
 const YouTubeButton = styled.button`
   width: 30px;
   height: 30px;
-  margin-left: 40px;
+  margin-left: -3vw;
   color: #ff0102;
   font-size: 30px;
   cursor: pointer;
@@ -119,7 +123,9 @@ function ChartItem({ imgPath, music, artist, rank }) {
 
   return (
     <ChartItemBlock id={music} isSmall={isSmall}>
-      <RankText isMobile={isMobile}>{rank}</RankText>
+      <RankBox>
+        <RankText isMobile={isMobile}>{rank}</RankText>
+      </RankBox>
       <ImageBox isMobile={isMobile}>
         <Image imgPath={imgPath} isMobile={isMobile} />
       </ImageBox>
