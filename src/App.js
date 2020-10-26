@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     background: #e9ecef;
   }
-  `;
+`;
 // 사용하고자 하는 자식 컴포넌트를 밖에서 <Provider>로 감싸주기
 function App() {
   return (

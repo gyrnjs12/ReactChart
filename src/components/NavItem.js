@@ -20,6 +20,7 @@ const Text = styled.div`
     color: ${(props) => props.color || 'white'};
   }
 `;
+
 function NavItem({ text, color }) {
   const dispatch = useChartDispatch();
   const onChangeChart = (e) =>

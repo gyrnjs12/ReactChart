@@ -1,9 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import YTsearch from 'youtube-api-search';
 import { lighten, darken } from 'polished'; // css 유틸 함수 라이브러리
 import { AiFillYoutube } from 'react-icons/ai';
 import { useChartDispatch } from './Provider/ChartProvider.component';
+import { useMediaQuery } from 'react-responsive';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -11,48 +12,62 @@ const ChartItemBlock = styled.div`
   display: flex;
   border: 1px #212121 solid;
   border-radius: 6px;
-  padding: 10px 54px;
+  padding: 10px 40px;
   align-items: center;
 `;
 
 const NameBlock = styled.div`
-  width: 600px;
+  width: 800px;
   display: flex;
   flex-direction: column;
   margin: 0 24px;
 `;
 
 const MusicName = styled.div`
-  font-size: 18px;
+  font-size: ${({ isMobile }) => (isMobile ? `16px` : `18px`)};
   font-weight: 500;
 `;
 
 const AritistName = styled.div`
-  font-size: 16px;
+  font-size: ${({ isMobile }) => (isMobile ? `14px` : `16px`)};
   font-weight: 450;
   color: #393b44;
 `;
 
 const RankText = styled.div`
-  width: 50px;
+  width: ${({ isMobile }) => (isMobile ? `100px` : `50px`)};
   font-size: 26px;
   color: #797a7e;
   font-weight: bold;
   margin-right: 24px;
 `;
-
+const ImageBox = styled.div`
+  ${({ isMobile }) => {
+    const size = isMobile ? `45` : `60`;
+    return css`
+      width: ${size}px;
+      height: ${size}px;
+    `;
+  }}
+`;
 const Image = styled.div`
   background-image: url(${(props) => props.imgPath});
-  background-size: 60px 60px;
-  width: 60px;
-  height: 60px;
+  ${({ isMobile }) => {
+    const size = isMobile ? `45` : `60`;
+    return css`
+      background-size: ${size}px ${size}px;
+      width: ${size}px;
+      height: ${size}px;
+    `;
+  }}
+  margin-right: 20px;
   border-radius: 8px;
 `;
 
 const YouTubeButton = styled.button`
   width: 30px;
   height: 30px;
-  margin-left: 120px;
+  margin-left: 40px;
   color: #ff0102;
   font-size: 30px;
   cursor: pointer;
@@ -68,6 +83,9 @@ const YouTubeButton = styled.button`
 `;
 
 function ChartItem({ imgPath, music, artist, rank }) {
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
   const dispatch = useChartDispatch();
   const handleOpenMusic = (e) => {
     const musicName = e.target.id || e.target.parentNode.id;
@@ -82,11 +100,13 @@ function ChartItem({ imgPath, music, artist, rank }) {
 
   return (
     <ChartItemBlock id={music}>
-      <RankText>{rank}</RankText>
-      <Image imgPath={imgPath} />
+      <RankText isMobile={isMobile}>{rank}</RankText>
+      <ImageBox isMobile={isMobile}>
+        <Image imgPath={imgPath} isMobile={isMobile} />
+      </ImageBox>
       <NameBlock>
-        <MusicName>{music}</MusicName>
-        <AritistName>{artist}</AritistName>
+        <MusicName isMobile={isMobile}>{music}</MusicName>
+        <AritistName isMobile={isMobile}>{artist}</AritistName>
       </NameBlock>
       <YouTubeButton>
         <AiFillYoutube id={music} onClick={handleOpenMusic} />
