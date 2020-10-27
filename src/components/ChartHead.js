@@ -5,7 +5,6 @@ import { useChartState } from './Provider/ChartProvider.component';
 const ChartHeadBlock = styled.div`
   padding-left: 32px;
   padding-right: 32px;
-
   .date {
     display: flex;
     width: 350px;
@@ -19,6 +18,7 @@ const ChartHeadBlock = styled.div`
     font-weight: bold;
     display: flex;
     align-items: flex-start;
+    margin-top: 60px;
   }
   .chart-name {
     padding-top: 36px;

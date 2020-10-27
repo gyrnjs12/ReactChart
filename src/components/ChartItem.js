@@ -50,7 +50,7 @@ const AritistName = styled.div`
 `;
 
 const RankBox = styled.div`
-  width: 30px;
+  width: 40px;
   height: 31px;
   margin-right: 10px;
 `;

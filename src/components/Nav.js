@@ -6,9 +6,10 @@ import NavItem from './NavItem';
 const NavBar = styled.div`
   width: 100vw;
   height: 40px;
-  position: fix;
+  position: fixed;
   background: #393b44;
   display: flex;
+  z-index: 1;
 `;
 
 const Box = styled.div`
