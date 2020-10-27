@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ProgressBlock = styled.div`
@@ -8,12 +8,10 @@ const ProgressBlock = styled.div`
   top: 30%;
   width: 60px;
   height: 60px;
-  color: ${({ color }) => color || 'white'};
 `;
 function Progress() {
-  const themeContext = useContext(ThemeContext);
   return (
-    <ProgressBlock color={themeContext.colors.MELON}>
+    <ProgressBlock>
       <CircularProgress size="60px" />
     </ProgressBlock>
   );
