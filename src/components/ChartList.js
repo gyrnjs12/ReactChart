@@ -8,6 +8,7 @@ import {
   useChartState,
 } from './Provider/ChartProvider.component';
 import MusicPortal from '../MusicPortal';
+import Progress from './Progress';
 import MusicModal from './MusicModal';
 
 const ChartListBlock = styled.div`
@@ -26,6 +27,7 @@ function ChartList() {
   });
   const dispatch = useChartDispatch();
   const { chart, music, modal } = useChartState();
+  const { data, error, loading } = music;
   const herokuURL = 'https://hidden-ridge-32364.herokuapp.com/chart/';
   // const localURL = 'http://localhost:3002/chart/';
   async function getChart(site) {
@@ -41,9 +43,9 @@ function ChartList() {
     getChart(chart);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chart]);
-  const { data, error } = music;
 
   if (error) return <div>에러!</div>;
+  if (loading) return <Progress />;
   return (
     <>
       <ChartListBlock isSmall={isSmall}>
