@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const NewSongTempleteBlock = styled.div`
   width: 100vw;
-  height: 300px;
+  height: 400px;
   background-color: skyblue;
   display: flex;
   justify-content: center;
