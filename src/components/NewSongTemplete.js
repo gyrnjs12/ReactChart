@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NewSongTempleteBlock = styled.div`
-  width: 100vw;
+  min-width: 1600px;
   height: 400px;
   background-color: skyblue;
   display: flex;

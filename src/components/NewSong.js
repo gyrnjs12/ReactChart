@@ -10,8 +10,8 @@ const NewSongBlock = styled.div`
   justify-content: center;
 `;
 const NewSongItem = styled.div`
-  width: 155px;
-  height: 155px;
+  width: 170px;
+  height: 170px;
   background-color: #ff80ab;
   margin: 0 15px;
 `;
@@ -21,7 +21,7 @@ const Text = styled.div`
   font-size: 20px;
   font-weight: bold;
   background-color: #fa80ab;
-  margin: 0 58px;
+  margin: 0 14px;
 `;
 
 function NewSong() {

@@ -16,6 +16,7 @@ const getMelon = function (req, res) {
     // html seletor를 문자열로 받아 cheerio 객체에서 선택된 html에서 해당하는 모든 태그들의 배열을 반환
     const $bodyList = $('div.service_list_song table tbody').children('tr');
     $bodyList.each(function (i, item) {
+      console.dir(item);
       ulList[i] = {
         id: i + 1,
         title: $(this).find('div.ellipsis.rank01 span a').text(), // html seletor를 받아 해당하는 태그를 반환
