@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import NewSongItem from './NewSongItem';
 const NewSongBlock = styled.div`
   width: 67vw;
   height: 100%;
@@ -8,12 +8,6 @@ const NewSongBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-`;
-const NewSongItem = styled.div`
-  width: 170px;
-  height: 170px;
-  background-color: #ff80ab;
-  margin: 0 15px;
 `;
 
 const Text = styled.div`

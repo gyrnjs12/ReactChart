@@ -2,7 +2,7 @@ import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import NavBar from './components/Nav';
 import ChartTemplate from './components/ChartTemplate';
-import ChartHead from './components/ChartHead';
+// import ChartHead from './components/ChartHead';
 import ChartHead2 from './components/ChartHead2';
 import ChartList from './components/ChartList';
 import { ChartProvider } from './components/Provider/ChartProvider.component';

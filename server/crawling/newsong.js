@@ -19,12 +19,14 @@ const getNewSong = (req, res) => {
     $bodyList.each((i, item) => {
       ulList[i] = {
         id: i + 1,
+        artist: $(item)
+          .find('dl dd.singer div.ellipsis a')
+          .attr('title')
+          .slice(0, -9),
         title: $(item).find('dl dt span.none').text(),
-        artist: $(item).find('dl dd.singer a.play_artist.mlog').text(),
         img: $(item).find('dd.img span.thum img').attr('src'),
       };
     });
-    console.log(ulList);
     ulList = ulList.slice(0, 12);
     res.status(200).json(ulList);
   });

@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const api = require('./routes/index');
-const router = express.Router();
 const newSong = require('./crawling/newsong');
 const cors = require('cors');
 
