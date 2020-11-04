@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import NewSongItem from './NewSongItem';
+import {
+  useChartDispatch,
+  useChartState,
+} from './Provider/ChartProvider.component';
+import axios from 'axios';
+
 const NewSongBlock = styled.div`
   width: 67vw;
   height: 100%;
@@ -19,20 +25,31 @@ const Text = styled.div`
 `;
 
 function NewSong() {
+  const dispatch = useChartDispatch();
+  const { newsong } = useChartState();
+  const { data, error, loading } = newsong;
+  const localURL = 'http://localhost:5000/new';
+  async function getNewSong() {
+    dispatch({ type: 'GET_NEWSONG' });
+    try {
+      const response = await axios.get(localURL);
+      dispatch({ type: 'GET_NEWSONG_SUCCESS', data: response.data });
+    } catch (e) {
+      dispatch({ type: 'GET_NEWSONG_ERROR', error: e });
+    }
+  }
+  useEffect(() => {
+    getNewSong();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  if (error) return <div>ERROR!!</div>;
+  if (loading) return <div>Loading...</div>;
   return (
     <NewSongBlock>
-      <NewSongItem />
-      <NewSongItem />
-      <NewSongItem />
-      <NewSongItem />
-      <NewSongItem />
-      <NewSongItem />
-      <NewSongItem />
-      <NewSongItem />
-      <NewSongItem />
-      <NewSongItem />
-      <NewSongItem />
-      <NewSongItem />
+      {data &&
+        data.map((song) => (
+          <NewSongItem img={song.img} artist={song.artist} hover={false} />
+        ))}
       <Text>K-POP 음원의 실시간 차트를 확인할 수있는 플랫폼입니다.</Text>
     </NewSongBlock>
   );

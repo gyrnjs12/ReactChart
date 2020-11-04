@@ -9,6 +9,7 @@ const ChartHeadBlock = styled.div`
   height: 600px;
   background-color: grey;
 `;
+
 const TextBlock = styled.div`
   display: flex;
   width: auto;

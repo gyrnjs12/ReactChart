@@ -5,22 +5,28 @@ const NewSongItemBlock = styled.div`
   width: 170px;
   height: 170px;
   margin: 0 15px;
+  border-radius: 5px;
 `;
+
 const AlbumImage = styled.div`
   background-image: url(${({ imgPath }) => imgPath});
   background-size: 170px 170px;
   border-radius: 5px;
   width: 170px;
   height: 170px;
+  position: reletive;
+  cursor: pointer;
+  &:hover {
+    background-image: url(${({ imgPath }) => imgPath}), rgba(0, 0, 0, 0.65);
+  }
 `;
 
 const NameBox = styled.div`
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(0, 0, 0, 0.65);
   width: 170px;
   height: 30px;
-  position: absolute;
-  top: 307px;
-  z-index: 100;
+  top: 140px;
+  position: relative;
   color: #ffffff;
   display: flex;
   justify-content: center;
@@ -28,18 +34,34 @@ const NameBox = styled.div`
   border-radius: 0 0 5px 5px;
 `;
 
+const HoverBox = styled.div`
+  background-color: rgba(0, 0, 0, 0.65);
+  width: 170px;
+  height: 170px;
+  position: relative;
+  border-radius: 5px;
+`;
 const NameText = styled.div`
+  max-width: 140px;
   color: #ffffff;
   font-size: 14px;
   font-weight: 450;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
-function NewSongItem({ text }) {
+function NewSongItem({ artist, img, hover }) {
   return (
     <NewSongItemBlock>
-      <AlbumImage imgPath="https://cdnimg.melon.co.kr/cm2/album/images/105/11/210/10511210_20201029163557_500.jpg?41316f7d9715420d7834405122bc4470/melon/resize/156/quality/80/optimize" />
-      <NameBox>
-        <NameText>dd</NameText>
-      </NameBox>
+      <AlbumImage imgPath={img}>
+        {hover ? (
+          <HoverBox />
+        ) : (
+          <NameBox>
+            <NameText>{artist}</NameText>
+          </NameBox>
+        )}
+      </AlbumImage>
     </NewSongItemBlock>
   );
 }
