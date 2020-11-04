@@ -41,6 +41,7 @@ const HoverBox = styled.div`
   position: relative;
   border-radius: 5px;
 `;
+
 const NameText = styled.div`
   max-width: 140px;
   color: #ffffff;
@@ -50,10 +51,10 @@ const NameText = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-function NewSongItem({ artist, img, hover }) {
+function NewSongItem({ artist, img, hover, onToggle }) {
   return (
     <NewSongItemBlock>
-      <AlbumImage imgPath={img}>
+      <AlbumImage imgPath={img} onMouseEnter={onToggle} onMouseLeave={onToggle}>
         {hover ? (
           <HoverBox />
         ) : (

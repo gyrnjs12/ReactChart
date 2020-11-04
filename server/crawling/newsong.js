@@ -25,6 +25,7 @@ const getNewSong = (req, res) => {
           .slice(0, -9),
         title: $(item).find('dl dt span.none').text(),
         img: $(item).find('dd.img span.thum img').attr('src'),
+        hover: false,
       };
     });
     ulList = ulList.slice(0, 12);

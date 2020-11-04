@@ -82,6 +82,17 @@ function chartReducer(state, action) {
           error: action.error,
         },
       };
+    case 'TOGGLE_HOVER':
+      return {
+        ...state,
+        newsong: {
+          loading: false,
+          data: state.newsong.data.map((data) =>
+            data.id === action.id ? { ...data, hover: !data.hover } : data,
+          ),
+          error: null,
+        },
+      };
     case 'CLOSE_MODAL':
       return {
         ...state,
