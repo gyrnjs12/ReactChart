@@ -17,7 +17,8 @@ const NewSongBlock = styled.div`
 
 const Text = styled.div`
   width: 100%;
-  font-size: 20px;
+  color: #eeeeee;
+  font-size: 16px;
   font-weight: bold;
   margin: 0 14px;
 `;

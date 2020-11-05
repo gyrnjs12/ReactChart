@@ -6,8 +6,8 @@ import { useChartState } from './Provider/ChartProvider.component';
 
 const ChartHeadBlock = styled.div`
   width: 100vw;
-  height: 600px;
-  background-color: grey;
+  height: 565px;
+  background-image: url('https://img2.quasarzone.co.kr/img/data/img/editor/1903/1903___1093872597.jpg');
 `;
 
 const TextBlock = styled.div`
@@ -34,7 +34,7 @@ const Line = styled.div`
   width: 67vw;
   margin: 0 16.5vw;
   margin-bottom: 20px;
-  border: 1px solid black;
+  border: 1px solid #eeeeee;
 `;
 function ChartHead2({ children, text }) {
   const { chart } = useChartState();
