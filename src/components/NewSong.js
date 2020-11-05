@@ -10,7 +10,6 @@ import axios from 'axios';
 const NewSongBlock = styled.div`
   width: 67vw;
   height: 100%;
-  background-color: blue;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -20,7 +19,6 @@ const Text = styled.div`
   width: 100%;
   font-size: 20px;
   font-weight: bold;
-  background-color: #fa80ab;
   margin: 0 14px;
 `;
 
@@ -58,6 +56,7 @@ function NewSong() {
             key={song.id}
             img={song.img}
             artist={song.artist}
+            title={song.title}
             hover={song.hover}
             onToggle={() => onToggle(song.id)}
           />

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const NewSongTempleteBlock = styled.div`
   min-width: 1600px;
   height: 400px;
-  background-color: skyblue;
   display: flex;
   justify-content: center;
 `;

@@ -40,9 +40,19 @@ const HoverBox = styled.div`
   height: 170px;
   position: relative;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .title {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
-const NameText = styled.div`
+const Text = styled.div`
   max-width: 140px;
   color: #ffffff;
   font-size: 14px;
@@ -51,15 +61,20 @@ const NameText = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-function NewSongItem({ artist, img, hover, onToggle }) {
+function NewSongItem({ artist, img, hover, onToggle, title }) {
   return (
     <NewSongItemBlock>
       <AlbumImage imgPath={img} onMouseEnter={onToggle} onMouseLeave={onToggle}>
         {hover ? (
-          <HoverBox />
+          <HoverBox>
+            <Text className="title" title={title}>
+              {title}
+            </Text>
+            <Text>{artist}</Text>
+          </HoverBox>
         ) : (
           <NameBox>
-            <NameText>{artist}</NameText>
+            <Text>{artist}</Text>
           </NameBox>
         )}
       </AlbumImage>
