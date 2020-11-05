@@ -15,6 +15,11 @@ const initialState = {
     name: null,
     videoId: null,
   },
+  newsong: {
+    loading: false,
+    data: null,
+    error: null,
+  },
 };
 function chartReducer(state, action) {
   switch (action.type) {
@@ -48,6 +53,44 @@ function chartReducer(state, action) {
           loading: false,
           data: null,
           error: action.error,
+        },
+      };
+    case 'GET_NEWSONG':
+      return {
+        ...state,
+        newsong: {
+          loading: true,
+          data: null,
+          error: null,
+        },
+      };
+    case 'GET_NEWSONG_SUCCESS':
+      return {
+        ...state,
+        newsong: {
+          loading: false,
+          data: action.data,
+          error: null,
+        },
+      };
+    case 'GET_NEWSONG_ERROR':
+      return {
+        ...state,
+        newsong: {
+          loading: false,
+          data: null,
+          error: action.error,
+        },
+      };
+    case 'TOGGLE_HOVER':
+      return {
+        ...state,
+        newsong: {
+          loading: false,
+          data: state.newsong.data.map((data) =>
+            data.id === action.id ? { ...data, hover: !data.hover } : data,
+          ),
+          error: null,
         },
       };
     case 'CLOSE_MODAL':
