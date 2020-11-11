@@ -10,16 +10,22 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ChartItemBlock = styled.div`
   display: flex;
+  background-color: #f6f6f6;
   ${({ isSmall }) => {
     return css`
       ${isSmall
         ? `
-        border-bottom: 1px #212121 solid;
+        border-bottom: 1px #bdbdbd solid;
         border-radius: 0;
         padding: 10px 15px;`
         : `
-        border: 1px #212121 solid;
-        border-radius: 6px;
+        border-top: 1px #bdbdbd solid;
+        border-right: 1px #bdbdbd solid;
+        border-left: 1px #bdbdbd solid;
+        &:last-child {
+          border-bottom: 1px #bdbdbd solid;
+        }
+        border-radius: 0;
         padding: 10px 40px;`}
     `;
   }}
@@ -102,7 +108,7 @@ const YouTubeButton = styled.button`
   }
 `;
 
-function ChartItem({ imgPath, music, artist, rank }) {
+function ChartItem({ imgPath, music, artist, rank, index }) {
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
