@@ -7,7 +7,6 @@ const ChartTemplateBlock = styled.div`
   height: 100vh;
   margin-left: ${({ isMobile }) => (isMobile ? `0px` : `16.5vw`)};
   position: relative;
-  background: #f6f6f6;
   display: flex;
   flex-direction: column;
 `;

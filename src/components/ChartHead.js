@@ -18,7 +18,9 @@ const ChartHeadBlock = styled.div`
     font-weight: bold;
     display: flex;
     align-items: flex-start;
-    margin-top: 60px;
+    padding-top: 50px;
+    margin-left: 14vw;
+    // margin-top: 60px;
   }
   .chart-name {
     padding-top: 36px;

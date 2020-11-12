@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NewSongTempleteBlock = styled.div`
-  min-width: 1600px;
+  min-width: 1792px;
   height: 400px;
   display: flex;
   justify-content: center;

@@ -8,7 +8,7 @@ import {
 import axios from 'axios';
 
 const NewSongBlock = styled.div`
-  width: 67vw;
+  max-width: 1201px;
   height: 100%;
   display: flex;
   flex-wrap: wrap;

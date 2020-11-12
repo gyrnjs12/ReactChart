@@ -16,7 +16,10 @@ const ChartListBlock = styled.div`
   overflow-y: auto;
   ${({ isSmall }) => {
     return css`
-      ${isSmall ? `` : `padding: 20px 78px;`}; /* 위아래 20, 양옆 78 */
+      ${isSmall
+        ? ``
+        : `padding: 50px 78px; /* 위아래 20, 양옆 78 */
+        `};
     `;
   }}
 `;
