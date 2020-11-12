@@ -27,11 +27,12 @@ function NewSong() {
   const dispatch = useChartDispatch();
   const { newsong } = useChartState();
   const { data, error, loading } = newsong;
-  const localURL = 'http://localhost:5000/new';
+  //const localURL = 'http://localhost:5000/new';
+  const herokuURL = 'https://hidden-ridge-32364.herokuapp.com/new';
   async function getNewSong() {
     dispatch({ type: 'GET_NEWSONG' });
     try {
-      const response = await axios.get(localURL);
+      const response = await axios.get(herokuURL);
       dispatch({ type: 'GET_NEWSONG_SUCCESS', data: response.data });
     } catch (e) {
       dispatch({ type: 'GET_NEWSONG_ERROR', error: e });
