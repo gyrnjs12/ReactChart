@@ -47,6 +47,7 @@ const MusicName = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-bottom: 8px;
 `;
 
 const AritistName = styled.div`

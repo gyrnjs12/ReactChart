@@ -1,17 +1,27 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
+import reset from 'styled-reset';
 import NavBar from './components/Nav';
 import ChartTemplate from './components/ChartTemplate';
-// import ChartHead from './components/ChartHead';
 import ChartHead2 from './components/ChartHead2';
 import ChartHead1 from './components/ChartHead';
 import ChartList from './components/ChartList';
 import { ChartProvider } from './components/Provider/ChartProvider.component';
 import theme from './components/theme/theme';
+import Roboto from './Fonts/Roboto-Regular.ttf';
 
 const GlobalStyle = createGlobalStyle`
+  ${reset};
+  @font-face {
+    font-family: 'Roboto';
+    src: url(${Roboto}) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+  }
   body {
+    font-family: 'Roboto';
     margin: 0;
     background: #eeeeee;
   }

@@ -2,3 +2,6 @@ node_modules
 .env
 build
 .netlify
+.prettierrc
+src/fonts
+public/img

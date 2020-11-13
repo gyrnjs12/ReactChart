@@ -10,27 +10,32 @@ const getNewSong = (req, res) => {
     }
   };
 
-  getAlbum().then((html) => {
-    let ulList = [];
-    const $ = cheerio.load(html.data);
-    const $bodyList = $(
-      'div#conts div.new_album div div.list_wrap ul.sub_list',
-    ).children('li');
-    $bodyList.each((i, item) => {
-      ulList[i] = {
-        id: i + 1,
-        artist: $(item)
-          .find('dl dd.singer div.ellipsis a')
-          .attr('title')
-          .slice(0, -9),
-        title: $(item).find('dl dt span.none').text(),
-        img: $(item).find('dd.img span.thum img').attr('src'),
-        hover: false,
-      };
+  getAlbum()
+    .then((html) => {
+      let ulList = [];
+      const $ = cheerio.load(html.data);
+      const $bodyList = $(
+        'div#conts div.new_album div div.list_wrap ul.sub_list',
+      ).children('li');
+      $bodyList.each((i, item) => {
+        ulList[i] = {
+          id: i + 1,
+          title: $(item).find('dl dt span.none').text(),
+          artist: $(item)
+            .find(
+              'dl dd.singer div.ellipsis span.checkEllipsis a.play_artist.mlog span',
+            )
+            .text(),
+          img: $(item).find('dd.img span.thum img').attr('src'),
+          hover: false,
+        };
+      });
+      ulList = ulList.slice(0, 12);
+      res.status(200).send(ulList);
+    })
+    .catch((error) => {
+      console.log(error);
     });
-    ulList = ulList.slice(0, 12);
-    res.status(200).json(ulList);
-  });
 };
 
 module.exports = getNewSong;
