@@ -9,19 +9,19 @@ import ChartHead1 from './components/ChartHead';
 import ChartList from './components/ChartList';
 import { ChartProvider } from './components/Provider/ChartProvider.component';
 import theme from './components/theme/theme';
-import Roboto from './Fonts/Roboto-Regular.ttf';
+import NanumSquare from './Fonts/NanumSquareOTF_acR.otf';
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
   @font-face {
-    font-family: 'Roboto';
-    src: url(${Roboto}) format('truetype');
-    font-weight: 400;
+    font-family: 'NanumSquare';
+    src: url(${NanumSquare}) format('truetype');
+    font-weight: 500;
     font-style: normal;
     font-display: auto;
   }
   body {
-    font-family: 'Roboto';
+    font-family: 'NanumSquare';
     margin: 0;
     background: #eeeeee;
   }
