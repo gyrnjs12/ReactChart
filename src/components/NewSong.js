@@ -57,7 +57,7 @@ function NewSong() {
           <NewSongItem
             key={song.id}
             img={song.img}
-            artist={song.artist}
+            artist={song.artist || 'Various Artist'}
             title={song.title}
             hover={song.hover}
             onToggle={() => onToggle(song.id)}

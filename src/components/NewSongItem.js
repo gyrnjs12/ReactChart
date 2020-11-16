@@ -46,6 +46,7 @@ const HoverBox = styled.div`
   flex-direction: column;
 
   .title {
+    margin-bottom: 10px;
     &:hover {
       text-decoration: underline;
     }
@@ -67,9 +68,7 @@ function NewSongItem({ artist, img, hover, onToggle, title }) {
       <AlbumImage imgPath={img} onMouseEnter={onToggle} onMouseLeave={onToggle}>
         {hover ? (
           <HoverBox>
-            <Text className="title" title={title}>
-              {title}
-            </Text>
+            <Text className="title">{title}</Text>
             <Text>{artist}</Text>
           </HoverBox>
         ) : (

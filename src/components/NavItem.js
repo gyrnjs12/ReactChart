@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useChartDispatch } from './Provider/ChartProvider.component';
+import { GrGooglePlus } from 'react-icons/gr';
+import { CgProfile } from 'react-icons/cg';
+import { lighten, darken } from 'polished'; // css 유틸 함수 라이브러리
 
 const NavItemBlock = styled.div`
   display: flex;
@@ -20,13 +23,42 @@ const Text = styled.div`
   }
 `;
 
-function NavItem({ text, color }) {
+const ImageButton = styled.button`
+  font-size: 25px;
+  width: 30px;
+  height: 30px;
+  color: #ffffff;
+  background-color: #393b44;
+  position: relative;
+  left: 45vw;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  &:hover {
+    color: ${lighten(0.1, '#ffffff')};
+  }
+  &:active {
+    color: ${darken(0.1, '#ffffff')};
+  }
+`;
+
+function NavItem({ text, color, googleLogin, profile }) {
   const dispatch = useChartDispatch();
   const onChangeChart = (e) =>
     dispatch({ type: 'CHANGE_CHART', chart: e.target.innerText });
 
   return (
     <NavItemBlock>
+      {googleLogin && (
+        <ImageButton>
+          <GrGooglePlus />
+        </ImageButton>
+      )}
+      {profile && (
+        <ImageButton>
+          <CgProfile />
+        </ImageButton>
+      )}
       <Text color={color} onClick={onChangeChart}>
         {text}
       </Text>

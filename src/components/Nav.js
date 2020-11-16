@@ -28,6 +28,8 @@ function Nav({ children }) {
       <NavItem color={themeContext.colors.MELON} text="MELON" />
       <NavItem color={themeContext.colors.GENIE} text="GENIE" />
       <NavItem color={themeContext.colors.BUGS} text="BUGS" />
+      <NavItem profile />
+      <NavItem googleLogin />
     </NavBar>
   );
 }
