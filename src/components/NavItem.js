@@ -6,8 +6,7 @@ import { CgProfile } from 'react-icons/cg';
 import { lighten, darken } from 'polished'; // css 유틸 함수 라이브러리import NavItem from './NavItem';
 import { GoogleLogin } from 'react-google-login';
 
-const clientId =
-  '112265859519-9a92erp11rbbo97coj1207nglr37vplr.apps.googleusercontent.com';
+const clientId = process.env.OAUTH_CLENT_KEY;
 
 const NavItemBlock = styled.div`
   display: flex;
