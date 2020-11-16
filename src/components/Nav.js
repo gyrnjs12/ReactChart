@@ -2,10 +2,6 @@ import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import NavItem from './NavItem';
-import { GoogleLogin } from 'react-google-login';
-
-const clientId =
-  '112265859519-9a92erp11rbbo97coj1207nglr37vplr.apps.googleusercontent.com';
 
 const NavBar = styled.div`
   width: 100vw;
