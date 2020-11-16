@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import { useChartDispatch } from './Provider/ChartProvider.component';
 import { GrGooglePlus } from 'react-icons/gr';
 import { CgProfile } from 'react-icons/cg';
-import { lighten, darken } from 'polished'; // css 유틸 함수 라이브러리
+import { lighten, darken } from 'polished'; // css 유틸 함수 라이브러리import NavItem from './NavItem';
+import { GoogleLogin } from 'react-google-login';
+
+const clientId =
+  '112265859519-9a92erp11rbbo97coj1207nglr37vplr.apps.googleusercontent.com';
 
 const NavItemBlock = styled.div`
   display: flex;
@@ -50,9 +54,18 @@ function NavItem({ text, color, googleLogin, profile }) {
   return (
     <NavItemBlock>
       {googleLogin && (
-        <ImageButton>
-          <GrGooglePlus />
-        </ImageButton>
+        <GoogleLogin
+          clientId={clientId}
+          buttonText="Google"
+          render={({ onClick, disabled }) => (
+            <ImageButton>
+              <GrGooglePlus onClick={onClick} disabled={disabled} />
+            </ImageButton>
+          )}
+          onSuccess={(result) => console.log('성공', result)}
+          onFailure={(result) => console.log('실패', result)}
+          cookiePolicy={'single_host_origin'}
+        />
       )}
       {profile && (
         <ImageButton>
