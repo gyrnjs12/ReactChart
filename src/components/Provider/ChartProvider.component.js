@@ -20,6 +20,11 @@ const initialState = {
     data: null,
     error: null,
   },
+  google: {
+    logged: false,
+    id: null,
+    name: null,
+  },
 };
 function chartReducer(state, action) {
   switch (action.type) {
@@ -105,6 +110,24 @@ function chartReducer(state, action) {
         search: {
           name: action.name,
           videoId: action.id,
+        },
+      };
+    case 'ON_LOGIN':
+      return {
+        ...state,
+        google: {
+          logged: true,
+          id: action.id,
+          name: action.name,
+        },
+      };
+    case 'ON_LOGOUT':
+      return {
+        ...state,
+        google: {
+          logged: false,
+          id: null,
+          name: null,
         },
       };
     default:

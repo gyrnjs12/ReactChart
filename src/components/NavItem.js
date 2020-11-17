@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useChartDispatch } from './Provider/ChartProvider.component';
+import {
+  useChartDispatch,
+  useChartState,
+} from './Provider/ChartProvider.component';
 import { GrGooglePlus } from 'react-icons/gr';
+import { BiLogOut } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
-import { lighten, darken } from 'polished'; // css 유틸 함수 라이브러리import NavItem from './NavItem';
+import { lighten, darken } from 'polished'; // css 유틸 함수 라이브러리
 import { GoogleLogin } from 'react-google-login';
 
-const clientId = process.env.OAUTH_CLENT_KEY;
+const clientId = process.env.REACT_APP_OAUTH_KEY;
 
 const NavItemBlock = styled.div`
   display: flex;
@@ -37,6 +41,7 @@ const ImageButton = styled.button`
   cursor: pointer;
   outline: none;
   border: none;
+
   &:hover {
     color: ${lighten(0.1, '#ffffff')};
   }
@@ -47,25 +52,54 @@ const ImageButton = styled.button`
 
 function NavItem({ text, color, googleLogin, profile }) {
   const dispatch = useChartDispatch();
+  const { google } = useChartState();
   const onChangeChart = (e) =>
     dispatch({ type: 'CHANGE_CHART', chart: e.target.innerText });
-
+  const onLogin = (res) => {
+    dispatch({ type: 'ON_LOGIN', id: res.googleId, name: res.profileObj.name });
+    window.sessionStorage.setItem('id', res.googleId);
+    window.sessionStorage.setItem('name', res.profileObj.name);
+    window.sessionStorage.setItem('isLogged', true);
+    console.log('결과:', res);
+  };
+  const onLogout = (res) => {
+    const auth = window.gapi.auth2.getAuthInstance();
+    dispatch({ type: 'ON_LOGOUT' });
+    auth.signOut().then(() => console.log('LOGOUT')); // 이게 있어야 로그아웃을 함
+    window.sessionStorage.clear();
+  };
+  useEffect(() => {
+    const isLogeed = window.sessionStorage.getItem('isLogged');
+    const id = window.sessionStorage.getItem('id');
+    const name = window.sessionStorage.getItem('name');
+    if (isLogeed) {
+      dispatch({ type: 'ON_LOGIN', id, name });
+    } else {
+      dispatch({ type: 'ON_LOGOUT' });
+    }
+  }, [dispatch]);
+  const onFailure = (err) => console.log(err);
   return (
     <NavItemBlock>
-      {googleLogin && (
-        <GoogleLogin
-          clientId={clientId}
-          buttonText="Google"
-          render={({ onClick, disabled }) => (
-            <ImageButton>
-              <GrGooglePlus onClick={onClick} disabled={disabled} />
-            </ImageButton>
-          )}
-          onSuccess={(result) => console.log('성공', result)}
-          onFailure={(result) => console.log('실패', result)}
-          cookiePolicy={'single_host_origin'}
-        />
-      )}
+      {googleLogin &&
+        (google.logged ? (
+          <ImageButton>
+            <BiLogOut onClick={onLogout} />
+          </ImageButton>
+        ) : (
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Google"
+            render={({ onClick, disabled }) => (
+              <ImageButton>
+                <GrGooglePlus onClick={onClick} disabled={disabled} />
+              </ImageButton>
+            )}
+            onSuccess={onLogin}
+            onFailure={onFailure}
+            cookiePolicy={'single_host_origin'}
+          />
+        ))}
       {profile && (
         <ImageButton>
           <CgProfile />
