@@ -30,6 +30,7 @@ function Nav({ children }) {
       <NavItem color={themeContext.colors.BUGS} text="BUGS" />
       <NavItem profile />
       <NavItem googleLogin />
+      <NavItem logout />
     </NavBar>
   );
 }
