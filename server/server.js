@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 const api = require('./routes/index');
 const newSong = require('./crawling/newsong');
+const playlist = require('./api/youtube-api');
 const cors = require('cors');
 
 app.use(cors());
+app.use('/playlist', playlist);
 app.use('/chart', api);
 app.get('/new', newSong);
 app.get('/', (req, res) => {
