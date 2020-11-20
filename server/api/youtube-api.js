@@ -1,6 +1,7 @@
 const axios = require('axios');
 
-const API_KEY = process.env.GOOGLE_API_KEY;
+require('dotenv').config();
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const getList = function (req, res) {
   const getPlaylist = async () => {
@@ -14,6 +15,7 @@ const getList = function (req, res) {
     }
   };
   getPlaylist().then((data) => {
+    console.log('API', process.env.REACT_APP_API_KEY);
     res.status(200).json(data);
   });
 };
