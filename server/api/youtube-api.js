@@ -15,7 +15,6 @@ const getList = function (req, res) {
     }
   };
   getPlaylist().then((data) => {
-    console.log('API', process.env.REACT_APP_API_KEY);
     res.status(200).json(data);
   });
 };
