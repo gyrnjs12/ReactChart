@@ -24,12 +24,15 @@ function Nav({ children }) {
   return (
     <NavBar>
       <Box isMobile={isMobile} />
-
-      <NavItem text="HOME" />
+      <Link to="/">
+        <NavItem text="HOME" />
+      </Link>
       <NavItem color={themeContext.colors.MELON} text="MELON" />
       <NavItem color={themeContext.colors.GENIE} text="GENIE" />
       <NavItem color={themeContext.colors.BUGS} text="BUGS" />
-      <NavItem profile />
+      <Link to="/:id">
+        <NavItem profile />
+      </Link>
       <NavItem googleLogin />
       <NavItem logout />
     </NavBar>
