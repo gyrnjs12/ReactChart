@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import NavItem from './NavItem';
-import { Link } from 'react-router-dom';
+import { useChartState } from './Provider/ChartProvider.component';
+
 const NavBar = styled.div`
   width: 100vw;
   height: 40px;
@@ -17,6 +18,7 @@ const Box = styled.div`
 `;
 
 function Nav({ children }) {
+  const { google } = useChartState();
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
@@ -24,17 +26,12 @@ function Nav({ children }) {
   return (
     <NavBar>
       <Box isMobile={isMobile} />
-      <Link to="/">
-        <NavItem text="HOME" />
-      </Link>
       <NavItem color={themeContext.colors.MELON} text="MELON" />
       <NavItem color={themeContext.colors.GENIE} text="GENIE" />
       <NavItem color={themeContext.colors.BUGS} text="BUGS" />
-      <Link to="/:id">
-        <NavItem profile />
-      </Link>
       <NavItem googleLogin />
       <NavItem logout />
+      {google.logged && <NavItem profile />}
     </NavBar>
   );
 }

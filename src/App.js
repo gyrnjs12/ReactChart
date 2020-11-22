@@ -2,11 +2,9 @@ import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import reset from 'styled-reset';
 import Home from './components/Home';
-import Profile from './components/Profile';
 import { ChartProvider } from './components/Provider/ChartProvider.component';
 import theme from './components/theme/theme';
 import NanumSquare from './Fonts/NanumSquareOTF_acR.otf';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
@@ -27,15 +25,12 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <>
-      <Router>
-        <ChartProvider>
-          <GlobalStyle />
-          <ThemeProvider theme={theme}>
-            <Route path="/" exact render={(props) => <Home />} />
-            <Route path="/id" render={(props) => <Profile />} />
-          </ThemeProvider>
-        </ChartProvider>
-      </Router>
+      <ChartProvider>
+        <GlobalStyle />
+        <ThemeProvider theme={theme}>
+          <Home />
+        </ThemeProvider>
+      </ChartProvider>
     </>
   );
 }

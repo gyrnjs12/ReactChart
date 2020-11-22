@@ -1,7 +1,8 @@
 import React from 'react';
+import NavBar from './Nav';
 
 function Profile(props) {
-  return <div>HELLO WORLD@@@@@@@@@@@@@@@@@@@</div>;
+  return <NavBar />;
 }
 
 export default Profile;

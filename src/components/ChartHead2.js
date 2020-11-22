@@ -43,7 +43,12 @@ function ChartHead2({ children, text }) {
       <TextBlock>
         <ChartText>REAL TIME </ChartText>
         <p> a</p> {/* 띄어쓰기 */}
-        <img className="chart-img" alt="로고" src={`/img/${chart}_logo.png`} />
+        <img
+          className="chart-img"
+          alt="로고"
+          src={`/img/${chart}_logo.png`}
+          title="logo"
+        />
         <p> a</p> {/* 띄어쓰기 */}
         <ChartText> CHART </ChartText>
       </TextBlock>

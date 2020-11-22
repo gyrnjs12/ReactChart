@@ -9,6 +9,7 @@ import { BiLogOut } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import { lighten, darken } from 'polished'; // css 유틸 함수 라이브러리
 import { GoogleLogin } from 'react-google-login';
+import PlaylistBox from './PlaylistBox';
 
 const clientId = process.env.REACT_APP_OAUTH_KEY;
 
@@ -25,6 +26,7 @@ const Text = styled.div`
   font-weight: bold;
   color: #ffffff;
   cursor: pointer;
+
   &:first-letter {
     color: ${(props) => props.color || 'white'};
   }
@@ -41,7 +43,9 @@ const ImageButton = styled.button`
   cursor: pointer;
   outline: none;
   border: none;
-
+  .profile {
+    background-color: red;
+  }
   &:hover {
     color: ${lighten(0.1, '#ffffff')};
   }
@@ -52,7 +56,8 @@ const ImageButton = styled.button`
 
 function NavItem({ text, color, googleLogin, profile }) {
   const dispatch = useChartDispatch();
-  const { google } = useChartState();
+  const { google, playlist } = useChartState();
+  const togglePlaylist = () => dispatch({ type: 'TOGGLE_PLAYLIST' });
   const onChangeChart = (e) =>
     dispatch({ type: 'CHANGE_CHART', chart: e.target.innerText });
   const onLogin = (res) => {
@@ -101,10 +106,14 @@ function NavItem({ text, color, googleLogin, profile }) {
           />
         ))}
       {profile && (
-        <ImageButton>
-          <CgProfile />
-        </ImageButton>
+        <>
+          <ImageButton onClick={togglePlaylist}>
+            <CgProfile />
+          </ImageButton>
+          {playlist && <PlaylistBox />}
+        </>
       )}
+
       <Text color={color} onClick={onChangeChart}>
         {text}
       </Text>
