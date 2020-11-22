@@ -6,6 +6,7 @@ import React, { createContext, useReducer, useContext } from 'react';
 const initialState = {
   chart: 'MELON',
   modal: false,
+  playlist: false,
   music: {
     loading: false,
     data: null,
@@ -97,6 +98,11 @@ function chartReducer(state, action) {
           ),
           error: null,
         },
+      };
+    case 'TOGGLE_PLAYLIST':
+      return {
+        ...state,
+        playlist: !state.playlist,
       };
     case 'CLOSE_MODAL':
       return {

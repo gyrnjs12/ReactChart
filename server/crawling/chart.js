@@ -19,7 +19,14 @@ const getMelon = function (req, res) {
       ulList[i] = {
         id: i + 1,
         title: $(this).find('div.ellipsis.rank01 span a').text(), // html seletor를 받아 해당하는 태그를 반환
-        artist: $(this).find('div.ellipsis.rank02 span a').text(),
+        artist: $(this)
+          .find('div.ellipsis.rank02')
+          .text()
+          .trim()
+          .slice(
+            0,
+            $(this).find('div.ellipsis.rank02 ').text().trim().length / 2,
+          ),
         img: $(this).find('a.image_typeAll img').attr('src'),
       };
     });
@@ -44,7 +51,9 @@ const getBugs = function (req, res) {
       ulList[i] = {
         id: i + 1,
         title: $(this).find('p.title a').text(),
-        artist: $(this).find('p.artist a').text(),
+        artist:
+          $(this).find('p.artist a.artistTitle').text() ||
+          $(this).find('p.artist a').text(),
         img: $(this).find('a.thumbnail img').attr('src'), // src 속성의 값을 가져옴
       };
     });
