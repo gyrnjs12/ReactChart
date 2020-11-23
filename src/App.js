@@ -5,6 +5,7 @@ import Home from './components/Home';
 import { ChartProvider } from './components/Provider/ChartProvider.component';
 import theme from './components/theme/theme';
 import NanumSquare from './Fonts/NanumSquareOTF_acR.otf';
+import Test from './components/Test';
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
@@ -29,6 +30,7 @@ function App() {
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <Home />
+          <Test />
         </ThemeProvider>
       </ChartProvider>
     </>

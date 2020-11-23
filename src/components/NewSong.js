@@ -39,9 +39,10 @@ function NewSong() {
     }
   }
   useEffect(() => {
+    if (data) return;
     getNewSong();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [data]);
   const onToggle = useCallback(
     (id) => {
       dispatch({ type: 'TOGGLE_HOVER', id });
@@ -50,6 +51,7 @@ function NewSong() {
   );
   if (error) return <div>ERROR!!</div>;
   if (loading) return <div>Loading...</div>;
+  if (!data) return null;
   return (
     <NewSongBlock>
       {data &&
