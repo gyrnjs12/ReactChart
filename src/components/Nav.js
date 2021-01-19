@@ -29,9 +29,9 @@ function Nav({ children }) {
       <NavItem color={themeContext.colors.MELON} text="MELON" />
       <NavItem color={themeContext.colors.GENIE} text="GENIE" />
       <NavItem color={themeContext.colors.BUGS} text="BUGS" />
-      <NavItem googleLogin />
+      {/* <NavItem googleLogin />
       <NavItem logout />
-      {google.logged && <NavItem profile />}
+      {google.logged && <NavItem profile />} */}
     </NavBar>
   );
 }
